@@ -7,9 +7,9 @@ const config = require("config");
 const { check, validationResult } = require("express-validator/check");
 const User = require("../../models/User");
 
-//TODO: @route  GET API/auth
-//TODO: @desc   TEST ROUTE
-//TODO: @access Public
+//TNOTE: @route  GET API/auth
+//NOTE:: @desc   TEST ROUTE
+//NOTE:: @access Public
 
 router.get("/", auth, async (req, res) => {
     try {
@@ -21,14 +21,14 @@ router.get("/", auth, async (req, res) => {
     }
 });
 
-//TODO: @route  POST API/AUTH
-//TODO: @desc   Authenticate user & get token
-//TODO: @access PUBLIC
+//NOTE:: @route  POST API/AUTH
+//NOTE:: @desc   Authenticate user & get token
+//NOTE:: @access PUBLIC
 router.post(
     "/",
     [
-        check("email", "Please include valid email").isEmail(),
-        check("password", "Password is required").exists()
+        check("email", "Введите правельный пароль").isEmail(),
+        check("password", "Введите пароль").exists()
     ],
     async (req, res) => {
         const errors = validationResult(req);
@@ -41,7 +41,7 @@ router.post(
         const { email, password } = req.body;
 
         try {
-            ////TODO:  See if user exists
+            ////NOTE::  See if user exists
 
             let user = await User.findOne({ email });
             if (!user) {
@@ -58,7 +58,7 @@ router.post(
                 });
             }
 
-            ////TODO: Return JSONwetoken
+            ////NOTE:: Return JSONwetoken
             const payload = {
                 user: {
                     id: user.id

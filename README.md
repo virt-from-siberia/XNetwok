@@ -8,7 +8,7 @@ React js + redux
 
 ## Back-end
 
-Node js + express
+Node js + express, TypeScript
 
 ## DB
 
