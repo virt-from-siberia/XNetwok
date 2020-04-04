@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://XNETWORK:XNETWORK@xnetwork-dqvrh.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "mysecrettoken"
+}

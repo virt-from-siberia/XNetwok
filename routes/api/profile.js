@@ -1,9 +1,11 @@
+//Important_NOTE///: BACK END
 const express = require("express");
 const router = express.Router();
 const auth = require("../../middleware/auth");
 const { check, validationResult } = require("express-validator/check");
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
+const Post = require("../../models/Post");
 
 //Important_NOTE///: @route  GET api/profile/me
 //NOTE: @desc   Get current users profile
@@ -73,8 +75,8 @@ router.post(
         const profileFields = {};
         profileFields.user = req.user.id;
 
-        if (company) {
-            profileFields.company = company;
+        if (website) {
+            profileFields.website = website;
         }
         if (location) {
             profileFields.location = location;
@@ -91,11 +93,23 @@ router.post(
         if (githubusername) {
             profileFields.githubusername = githubusername;
         }
+
+        //BUG:=====!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         if (skills) {
-            profileFields.skills = skills.split(",").map(skill => skill.trim());
+            profileFields.skills = skills;
+            // .split(" , ")
+            // .map(skill => skill.trim());
         }
 
-        //::Important///:: Build Social object
+        // if (skills) {
+        //     console.log(" ===== skills =======");
+        //     console.log(skills);
+        //     profileFields.skills = skills
+        //         .split(" , ")
+        //         .map(skill => skill.trim());
+        // }
+
+        //:Important_NOTE///:  Build Social object
         profileFields.social = {};
 
         if (youtube) {
@@ -193,6 +207,7 @@ router.get("/user/:user_id", async (req, res) => {
 router.delete("/", auth, async (req, res) => {
     try {
         //NOTE: Remove users posts
+        await Post.deleteMany({ user: req.user.id });
 
         //NOTE: Remove profile
 
@@ -229,6 +244,7 @@ router.put(
         ]
     ],
     async (req, res) => {
+        console.log(req.body);
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {

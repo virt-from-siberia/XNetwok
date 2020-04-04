@@ -287,6 +287,12 @@ button {
 .form .social-input i.fa-linkedin {
     color: #0077b5;
 }
+.form .social-input i.fa-vk {
+    color: #0077b5;
+}
+.form .social-input i.fa-odnoklassniki-square {
+    color: #f57904 !important;
+}
 
 .table th,
 .table td {

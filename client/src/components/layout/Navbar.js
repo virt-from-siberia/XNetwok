@@ -8,7 +8,13 @@ export const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     const authLinks = (
         <ul>
             <li>
-                <Link href='/dashboard'>
+                <Link to='/profiles'>Developers</Link>
+            </li>
+            <li>
+                <Link to='/posts'>Posts</Link>
+            </li>
+            <li>
+                <Link to='/dashboard'>
                     <i className='fas fa-user'></i>
                     <span className='hide-sm'> Dashboard</span>
                 </Link>
@@ -25,13 +31,13 @@ export const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     const guestLinks = (
         <ul>
             <li>
-                <a href='#!'>Developers</a>
+                <Link to='/profiles'>Developers</Link>
             </li>
             <li>
-                <Link href='/register'>Register</Link>
+                <Link to='/register'>Register</Link>
             </li>
             <li>
-                <a href='/login'>Login</a>
+                <Link to='/login'>Login</Link>
             </li>
         </ul>
     );
